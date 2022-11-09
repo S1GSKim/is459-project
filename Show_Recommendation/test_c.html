@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel = "stylesheet" href "https://bootswatch.com/4/cyborg/bootstrap.min.css">
+  <title>User Recommendation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-primary mb-3">
+    <div class="container">
+      <a href="#" class="navbar-brand"> AWS PERSONALIZE RECOMMENDERS</a>
+    </div>
+  </nav>
+<div class = "container searchContainer">
+  <div class="search card card-body">
+    <h1>Search User ID </h1>
+    <p class = "lead"> Enter a User ID to fetch user recommendations</p>
+    <form action = "http://127.0.0.1:8081/rec4u">
+      <input type="text" id ="searchUser" name = "userID" class = "form-control" placeholder = "(Enter User ID Here)">
+      <input type="submit" value="Submit" id="submit_btn">
+    </form>
+  </div>
+</div>
+<div class ="container rec4u_Image">
+  <h1>Recommended For You:</h1>
+  <div id ="rec4u"></div>
+</div>
+<!-- <div class ="container rec4u_Image">
+  <h1>Most Viewed:</h1>
+</div>
+<div class ="container rec4u_Image">
+  <h1>Customers Who Viewed X Also Viewed:</h1>
+</div>
+<div class ="container rec4u_Image">
+  <h1>Best Sellers</h1>
+</div>
+<div class ="container rec4u_Image">
+  <h1>Frequently Bought Together</h1>
+</div> -->
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src = "\\app.js"></script>
+</body>
+</html>
