@@ -4,6 +4,13 @@ import express from 'express';
 var app = express();
 const port = 8081;
 
+import * as dotenv from 'dotenv';
+dotenv.config()
+let accesskeyid = process.env.accesskeyid;
+let secretaccesskey = process.env.secretaccesskey;
+console.log(accesskeyid);
+console.log(secretaccesskey);
+
 
 import { PersonalizeRuntimeClient, GetRecommendationsCommand } from "@aws-sdk/client-personalize-runtime"; // ES Modules import
 
@@ -25,8 +32,8 @@ app.get('/rec4u', function (req, res) {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/Rec4u1",
       userId:user_ID,
-      accessKeyId:"AKIAZVHNIFDDAEVU3OO2",
-      secretAccessKey:"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"
+      accessKeyId:accesskeyid,
+      secretAccessKey:secretaccesskey
     };
   var run = async () => {
     try {
@@ -55,8 +62,8 @@ app.get('/MostViewed1', function (req, res) {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/MostViewed1",
       userId:user_ID,
-      accessKeyId:"AKIAZVHNIFDDAEVU3OO2",
-      secretAccessKey:"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"
+      accessKeyId:accesskeyid,
+      secretAccessKey:secretaccesskey
     };
   var run = async () => {
     try {
@@ -85,8 +92,8 @@ app.get('/AlsoView1', function (req, res) {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/AlsoView1",
       userId:user_ID,
-      accessKeyId:"AKIAZVHNIFDDAEVU3OO2",
-      secretAccessKey:"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"
+      accessKeyId:accesskeyid,
+      secretAccessKey:secretaccesskey
     };
   var run = async () => {
     try {
@@ -115,8 +122,8 @@ app.get('/BestSeller1', function (req, res) {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/BestSeller1",
       userId:user_ID,
-      accessKeyId:"AKIAZVHNIFDDAEVU3OO2",
-      secretAccessKey:"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"
+      accessKeyId:accesskeyid,
+      secretAccessKey:secretaccesskey
     };
   var run = async () => {
     try {
@@ -140,16 +147,16 @@ app.get('/BestSeller1', function (req, res) {
 // INPUT PAST BOUGHT ITEMS INTO PARAM TO GET ITEMS BOUGHT TOGETHER
 app.get('/BoughtTgt1', function (req, res) {
   // Prepare output in JSON format
-  const user_ID = req.query.userID;
-  console.log(user_ID);
+  // const user_ID = req.query.userID;
+  // console.log(user_ID);
   const personalizeRuntimeClient = new PersonalizeRuntimeClient({ region: "us-east-1"});
   // Set the recommendation request parameters.
   const getRecommendationsParam = {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/BoughtTgt1",
-      userId:user_ID,
-      accessKeyId:"AKIAZVHNIFDDAEVU3OO2",
-      secretAccessKey:"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"
+      itemId:"656388002",
+      accessKeyId:accesskeyid,
+      secretAccessKey:secretaccesskey
     };
   var run = async () => {
     try {
@@ -164,8 +171,11 @@ app.get('/BoughtTgt1', function (req, res) {
     const imageURLs = []
     const dir = "https://is459-grp8.s3.amazonaws.com/images/0"
     result.forEach(item => imageURLs.push(dir+item.itemId.substring(0,2)+"/0"+item.itemId+".jpg"));
+    res.setHeader('Content-type','text/html')
+    imageURLs.forEach(image => res.write('<img src='+image+'>'));
     // console.log(imageURLs);
-    res.json(imageURLs);
+    // res.json(imageURLs);
+
   }).catch(console.error.bind(console))
 });
 
