@@ -49,7 +49,8 @@ app.get('/rec4u', function (req, res) {
     const dir = "https://is459-grp8.s3.amazonaws.com/images/0"
     result.forEach(item => imageURLs.push(dir+item.itemId.substring(0,2)+"/0"+item.itemId+".jpg"));
     // console.log(imageURLs);
-    res.json(imageURLs);
+    res.setHeader('Content-type','text/html')
+    imageURLs.forEach(image => res.write('<img src='+image+'>'));
   }).catch(console.error.bind(console))
 });
 
@@ -79,7 +80,8 @@ app.get('/MostViewed1', function (req, res) {
     const dir = "https://is459-grp8.s3.amazonaws.com/images/0"
     result.forEach(item => imageURLs.push(dir+item.itemId.substring(0,2)+"/0"+item.itemId+".jpg"));
     // console.log(imageURLs);
-    res.json(imageURLs);
+    res.setHeader('Content-type','text/html')
+    imageURLs.forEach(image => res.write('<img src='+image+'>'));
   }).catch(console.error.bind(console))
 });
 
@@ -109,7 +111,8 @@ app.get('/AlsoView1', function (req, res) {
     const dir = "https://is459-grp8.s3.amazonaws.com/images/0"
     result.forEach(item => imageURLs.push(dir+item.itemId.substring(0,2)+"/0"+item.itemId+".jpg"));
     // console.log(imageURLs);
-    res.json(imageURLs);
+    res.setHeader('Content-type','text/html')
+    imageURLs.forEach(image => res.write('<img src='+image+'>'));
   }).catch(console.error.bind(console))
 });
 
@@ -139,7 +142,8 @@ app.get('/BestSeller1', function (req, res) {
     const dir = "https://is459-grp8.s3.amazonaws.com/images/0"
     result.forEach(item => imageURLs.push(dir+item.itemId.substring(0,2)+"/0"+item.itemId+".jpg"));
     // console.log(imageURLs);
-    res.json(imageURLs);
+    res.setHeader('Content-type','text/html')
+    imageURLs.forEach(image => res.write('<img src='+image+'>'));
   }).catch(console.error.bind(console))
 });
 
@@ -147,14 +151,14 @@ app.get('/BestSeller1', function (req, res) {
 // INPUT PAST BOUGHT ITEMS INTO PARAM TO GET ITEMS BOUGHT TOGETHER
 app.get('/BoughtTgt1', function (req, res) {
   // Prepare output in JSON format
-  // const user_ID = req.query.userID;
+  const itemID = req.query.itemID;
   // console.log(user_ID);
   const personalizeRuntimeClient = new PersonalizeRuntimeClient({ region: "us-east-1"});
   // Set the recommendation request parameters.
   const getRecommendationsParam = {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/BoughtTgt1",
-      itemId:"656388002",
+      itemId:itemID,
       accessKeyId:accesskeyid,
       secretAccessKey:secretaccesskey
     };
