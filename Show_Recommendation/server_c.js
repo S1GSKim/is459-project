@@ -88,12 +88,14 @@ app.get('/MostViewed1', function (req, res) {
 app.get('/AlsoView1', function (req, res) {
   // Prepare output in JSON format
   const user_ID = req.query.userID;
+  const item_ID = req.query.itemID;
   const personalizeRuntimeClient = new PersonalizeRuntimeClient({ region: "us-east-1"});
   // Set the recommendation request parameters.
   const getRecommendationsParam = {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/AlsoView1",
       userId:user_ID,
+      itemId:item_ID,
       accessKeyId:accesskeyid,
       secretAccessKey:secretaccesskey
     };
@@ -151,14 +153,14 @@ app.get('/BestSeller1', function (req, res) {
 // INPUT PAST BOUGHT ITEMS INTO PARAM TO GET ITEMS BOUGHT TOGETHER
 app.get('/BoughtTgt1', function (req, res) {
   // Prepare output in JSON format
-  const itemID = req.query.itemID;
+  const item_ID = req.query.itemID;
   // console.log(user_ID);
   const personalizeRuntimeClient = new PersonalizeRuntimeClient({ region: "us-east-1"});
   // Set the recommendation request parameters.
   const getRecommendationsParam = {
       numResults: 20,
       recommenderArn: "arn:aws:personalize:us-east-1:664070006982:recommender/BoughtTgt1",
-      itemId:itemID,
+      itemId:item_ID,
       accessKeyId:accesskeyid,
       secretAccessKey:secretaccesskey
     };
